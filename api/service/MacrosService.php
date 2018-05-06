@@ -1,19 +1,19 @@
 <?php
-include_once 'repository/UsuarioRepository.php';
+include_once 'repository/MacrosRepository.php';
 include_once 'interface/IService.php';
 /**
-* Serviços de usuário.
+* Serviços de macros.
 * 
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
-* @since: 01/05/2017
+* @since: 05/05/2017
 */
-class UsuarioService implements IService
+class MacrosService implements IService
 {
     private $repository;
     
     public function __construct()
     {
-        $this->repository = new UsuarioRepository();
+        $this->repository = new MacrosRepository();
     }
     
     public function save($object)

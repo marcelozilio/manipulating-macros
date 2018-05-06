@@ -25,4 +25,11 @@ $app->group('/usuario', function () use ($app) {
     include_once 'resources/UsuarioResource.php';
 });
 
+/**
+ * Recursos de Macros
+ */
+$app->group('/macros', function () use ($app) {
+    include_once 'resources/MacrosResource.php';
+});
+
 $app->run();

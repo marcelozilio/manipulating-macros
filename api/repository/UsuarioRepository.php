@@ -1,6 +1,6 @@
 <?php
-require_once 'persistence/ConnectionDataBase.class.php';
-require_once 'interfaces/IRepository.php';
+require_once 'persistence/ConnectionDataBase.php';
+require_once 'interface/IRepository.php';
 require_once 'model/Usuario.php';
 /**
 * Classe responsável pela persistência de usuários no banco de dados.
@@ -8,7 +8,7 @@ require_once 'model/Usuario.php';
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
 * @since: 01/05/2018
 */
-class PessoaRepository implements IRepository
+class UsuarioRepository implements IRepository
 {
     private $connection = null;
 
