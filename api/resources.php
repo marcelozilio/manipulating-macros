@@ -19,17 +19,24 @@ $app->get('/', function () {
 });
 
 /**
- * Recursos de Usuário
+ * Recursos de usuário.
  */
 $app->group('/usuario', function () use ($app) {
     include_once 'resources/UsuarioResource.php';
 });
 
 /**
- * Recursos de Macros
+ * Recursos de macronutrientes.
  */
 $app->group('/macros', function () use ($app) {
     include_once 'resources/MacrosResource.php';
+});
+
+/**
+ * Recursos de pesagem do usuário.
+ */
+$app->group('/usuario-peso', function () use ($app) {
+    include_once 'resources/UsuarioPesoResource.php';
 });
 
 $app->run();
