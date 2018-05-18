@@ -60,4 +60,13 @@ class UsuarioService implements IService
             throw new Exception($e->getMessage());
         }  
     }
+
+    public function autenticate($object)
+    {
+        try {
+            return $this->repository->autenticate($object);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }  
+    }
 }

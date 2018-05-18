@@ -58,3 +58,14 @@ $app->put('/update', function () use ($app) {
         echo json_encode($e->getMessage());
     }
 });
+
+$app->get('/autenticate/', function () use ($app) {
+    try {
+        $request = $app->request();
+        $usuario = json_decode($request->getBody());
+        $service = new UsuarioService();
+        echo json_encode($service->autenticate($usuario));
+    } catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+});

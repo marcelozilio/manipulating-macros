@@ -20,7 +20,7 @@ class UsuarioRepository implements IRepository
     public function save($object)
     {
         try {
-            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS)values(null,?,?,?,?,?,?,?)");
+            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS,SENHA)values(null,?,?,?,?,?,?,?)");
             
             $stat->bindValue(1, $object->email);
             $stat->bindValue(2, $object->nome);
@@ -29,6 +29,7 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(5, $object->idade);
             $stat->bindValue(6, $object->sexo);
             $stat->bindValue(7, $object->calorias);
+            $stat->bindValue(8, $object->senha);
             $stat->execute();
             $this->connection = null;
             return 'Registro Incluído.';
@@ -77,7 +78,7 @@ class UsuarioRepository implements IRepository
     public function update($object)
     {
         try {
-            $stat=$this->connection->prepare("UPDATE USUARIO SET EMAIL=?,NOME=?,ALTURA=?,PESO=?,IDADE=?,SEXO=?,CALORIAS=? WHERE ID_USUARIO = ?");
+            $stat=$this->connection->prepare("UPDATE USUARIO SET EMAIL=?,NOME=?,ALTURA=?,PESO=?,IDADE=?,SEXO=?,CALORIAS=?,SENHA=? WHERE ID_USUARIO = ?");
             
             $stat->bindValue(1, $object->email);
             $stat->bindValue(2, $object->nome);
@@ -86,12 +87,24 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(5, $object->idade);
             $stat->bindValue(6, $object->sexo);
             $stat->bindValue(7, $object->calorias);
-            $stat->bindValue(8, $object->id_usuario);
+            $stat->bindValue(8, $object->senha);
+            $stat->bindValue(9, $object->id_usuario);
             $stat->execute();
             $this->connection = null;
             return 'Registro alterado.';
         } catch (Exception $ex) {
             throw new Exception('Não foi possível alterar o registro.');
+        }
+    }
+
+    public function autenticate($usuario)
+    {
+        try {
+            $stat = $this->connection->query("SELECT * FROM USUARIO WHERE EMAIL = $object->email AND SENHA = $object->senha");
+            $usuario = $stat->fetchObject('Usuario');
+            return $usuario;
+        } catch (Exception $ex) {
+            throw new Exception('Não foi possível buscar o usuário');
         }
     }
 }

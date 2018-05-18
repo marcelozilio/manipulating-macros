@@ -3,8 +3,8 @@
 
     angular.module('manipulating-macros').factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UsuarioService'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UsuarioService) {
         var service = {};
 
         service.Login = Login;
@@ -13,18 +13,27 @@
 
         return service;
 
-        function Login(username, password, callback) {
-
-            /* chamar post do login aqui (API) */
-
+        function Login(usuario, callback) {
+            $timeout(function () {
+                var response;
+                UsuarioService.Autenticate(usuario)
+                    .then(function (user) {
+                        if (user !== null && user.password === password) {
+                            response = { success: true };
+                        } else {
+                            response = { success: false, message: 'Usuário ou senha estão incorretos' };
+                        }
+                        callback(response);
+                    });
+            }, 1000);
         }
 
-        function SetCredentials(username, password) {
-            var authdata = Base64.encode(username + ':' + password);
+        function SetCredentials(usuario) {
+            var authdata = Base64.encode(usuario.email + ':' + usuario.senha);
 
             $rootScope.globals = {
                 currentUser: {
-                    username: username,
+                    username: usuario.email,
                     authdata: authdata
                 }
             };
