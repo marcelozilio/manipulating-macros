@@ -1,14 +1,12 @@
 ﻿(function () {
     'use strict';
-    angular.module('manipulating-macros').controller('DashboardController', DashboardController);
-    DashboardController.$inject = ['DashBoardService', '$rootScope'];
-    function DashboardController(DashBoardService, $rootScope) {
+    
+    angular
+    .module('macros')
+    .controller('DashboardController', DashboardController);
+    
+    DashboardController.$inject = ['UsuarioService', '$rootScope'];
+    function DashboardController(UsuarioService, $rootScope) {
         var vm = this;
-        
-        activate();
-
-        function activate() {
-
-        }
-    };
-})();
+    }
+});

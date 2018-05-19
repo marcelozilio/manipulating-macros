@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('manipulating-macros').factory('UsuarioService', UsuarioService);
+    angular.module('macros').factory('UsuarioService', UsuarioService);
 
     UserService.$inject = ['$http', 'HttpResquestService'];
     function UsuarioService($http, HttpResquestService) {
@@ -52,4 +52,4 @@
             };
         }
     }
-})();
+});

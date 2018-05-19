@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('manipulating-macros').factory('AuthenticationService', AuthenticationService);
+    angular.module('macros').factory('AuthenticationService', AuthenticationService);
 
     AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UsuarioService'];
     function AuthenticationService($http, $cookies, $rootScope, $timeout, UsuarioService) {
@@ -132,4 +132,4 @@
         }
     };
 
-})();
+});

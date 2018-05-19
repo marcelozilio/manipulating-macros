@@ -1,8 +1,10 @@
 (function () {
     'use strict';
     
-    angular.module('manipulating-macros').factory('HttpResquestService', HttpResquestService);
+    angular.module('macros').factory('HttpResquestService', HttpResquestService);
     
+    var wsUrl = "";
+
     var defaultHeaderVars = {
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
     };
@@ -28,5 +30,4 @@
         post: postRequest,
         get: getRequest
     }
-    
-})();
+});
