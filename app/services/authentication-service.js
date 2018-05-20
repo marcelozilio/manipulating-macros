@@ -1,10 +1,12 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('macros').factory('AuthenticationService', AuthenticationService);
+    angular
+        .module('macros')
+        .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UsuarioService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UsuarioService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope'];
+    function AuthenticationService($http, $cookies, $rootScope) {
         var service = {};
 
         service.Login = Login;
@@ -14,32 +16,28 @@
         return service;
 
         function Login(usuario, callback) {
-            $timeout(function () {
-                var response;
-                UsuarioService.Autenticate(usuario)
-                    .then(function (user) {
-                        if (user !== null && user.password === password) {
-                            response = { success: true };
-                        } else {
-                            response = { success: false, message: 'Usuário ou senha estão incorretos' };
-                        }
-                        callback(response);
-                    });
-            }, 1000);
+            $http({
+                method: 'POST',
+                url: 'http://localhost/manipulating-macros/api/resources.php/usuario/autenticate',
+                data: usuario
+            }).then(function (response) {
+                callback(response);
+            });
         }
 
-        function SetCredentials(usuario) {
-            var authdata = Base64.encode(usuario.email + ':' + usuario.senha);
-
+        function SetCredentials(response) {
+            var usuario = response.data;
+            var authdata = Base64.encode(usuario.EMAIL + ':' + usuario.SENHA);
             $rootScope.globals = {
                 currentUser: {
-                    username: usuario.email,
+                    id: usuario.ID_USUARIO,
+                    nome: usuario.NOME,
+                    email: usuario.EMAIL,
                     authdata: authdata
                 }
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
@@ -132,4 +130,4 @@
         }
     };
 
-});
+})();

@@ -59,7 +59,7 @@ $app->put('/update', function () use ($app) {
     }
 });
 
-$app->get('/autenticate/', function () use ($app) {
+$app->post('/autenticate', function () use ($app) {
     try {
         $request = $app->request();
         $usuario = json_decode($request->getBody());

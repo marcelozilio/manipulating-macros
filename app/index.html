@@ -9,23 +9,20 @@
     <title>Manipulating Macros</title>
 </head>
 <body>
-    <div>
+    <div class="col-sm-8 col-sm-offset-2">
         <div ng-view></div>
-    </div>
+    </div> 
     <script src="components/jquery/jquery-3.1.1.min.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-route/angular-route.min.js"></script>
     <script src="components/angular-cookies/angular-cookies.min.js"></script>
-
-    <script src="js/app.js"></script>
-
-    <script src="js/services/utils/http-request-service.js"></script>
-    <script src="js/services/authentication/authentication.js"></script>
-    <script src="js/services/usuario/usuario-service.js"></script>
-    
-    <script src="js/controllers/login/login-controller.js"></script>
-    <script src="js/controllers/dashboard/dashboard-controller.js"></script>
-    <script src="js/controllers/registrar/registrar-controller.js"></script>
-    
+    <script src="app.js"></script>
+    <script src="utils/utils.js"></script>
+    <script src="services/authentication-service.js"></script>
+    <script src="services/flash-service.js"></script>
+    <script src="services/user-service.js"></script>
+    <script src="controller/login/login-controller.js"></script>
+    <script src="controller/registrar/registrar-controller.js"></script>
+    <script src="controller/home/home-controller.js"></script>
 </body>
 </html>

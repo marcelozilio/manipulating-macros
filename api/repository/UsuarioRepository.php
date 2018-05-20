@@ -20,8 +20,7 @@ class UsuarioRepository implements IRepository
     public function save($object)
     {
         try {
-            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS,SENHA)values(null,?,?,?,?,?,?,?)");
-            
+            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS,SENHA)values(null,?,?,?,?,?,?,?,?)");
             $stat->bindValue(1, $object->email);
             $stat->bindValue(2, $object->nome);
             $stat->bindValue(3, $object->altura);
@@ -31,8 +30,7 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(7, $object->calorias);
             $stat->bindValue(8, $object->senha);
             $stat->execute();
-            $this->connection = null;
-            return 'Registro Incluído.';
+            return true;
         } catch (Exception $ex) {
             throw new Exception('Erro ao incluir registro.');
         }
@@ -97,14 +95,14 @@ class UsuarioRepository implements IRepository
         }
     }
 
-    public function autenticate($usuario)
+    public function autenticate($object)
     {
         try {
-            $stat = $this->connection->query("SELECT * FROM USUARIO WHERE EMAIL = $object->email AND SENHA = $object->senha");
+            $stat = $this->connection->query("SELECT * FROM USUARIO WHERE EMAIL='$object->email' AND SENHA='$object->senha'");
             $usuario = $stat->fetchObject('Usuario');
             return $usuario;
-        } catch (Exception $ex) {
-            throw new Exception('Não foi possível buscar o usuário');
+        } catch (Exception $e) {
+            return false;
         }
     }
 }
