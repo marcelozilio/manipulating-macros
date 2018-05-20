@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">Manipulating Macros</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#!/home">Home</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAlimentos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Alimentos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownAlimentos">
+                    <a class="dropdown-item" href="#!/alimentos">Lista de Alimentos</a>
+                    <a class="dropdown-item" href="#!/cadastrar-alimento">Cadastrar Alimento</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!/macros">Macros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!/linha-do-tempo">Linha do tempo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!/configuracoes">Configurações</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <a href="#!/login">Logout</a>
+        </span>
+    </div>
+</nav>
+<script>
+    $(function () {
+        $('.dropdown-toggle').dropdown();
+    }); 
+</script>
