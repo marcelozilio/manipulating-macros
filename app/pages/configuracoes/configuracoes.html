@@ -1,6 +1,8 @@
-<div class="header">
-    <h3 class="text-center">Registrar-se</h3>
-</div>
+<div ng-include="'pages/navbar/navbar.html'"></div>
+<div class="form-group">
+        <h3>Configurações</h3>
+        <div class="dropdown-divider"></div>
+    </div>
 <div class="form-group">
     <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
 </div>
@@ -12,7 +14,7 @@
         </div>
         <div class="col-md-8 form-group">
             <label>E-mail</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" readonly />
         </div>
         <div class="col-md-4 form-group">
             <label>Senha</label>
@@ -24,7 +26,7 @@
         </div>
         <div class="col-md-4 form-group">
             <label>Peso</label>
-            <input type="text" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
+            <input type="number" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
         </div>
         <div class="col-md-4 form-group">
             <label>Idade</label>
@@ -46,9 +48,8 @@
             </select>
         </div>
         <div class="col-md-12 form-actions">
-            <button type="submit" class="btn btn-primary">Registrar-se</button>        
-            <a href="#!/login" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>        
         </div>
     </div>  
 </form>
-<div ng-include="'pages/footer/footer.html'"></div>
+<div ng-include="'pages/footer/footer.html'"></div>    

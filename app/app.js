@@ -29,6 +29,16 @@
             templateUrl: 'pages/alimento/alimentos.html',
             controllerAs: 'vm'
         })
+        .when('/configuracoes', {
+            controller: 'ConfiguracoesController',
+            templateUrl: 'pages/configuracoes/configuracoes.html',
+            controllerAs: 'vm'
+        })
+        .when('/macros', {
+            controller: 'MacrosController',
+            templateUrl: 'pages/macros/macros.html',
+            controllerAs: 'vm'
+        })
         .otherwise({ redirectTo: '/login' });
     }
     
