@@ -5,8 +5,8 @@
         .module('macros')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope'];
-    function AuthenticationService($http, $cookies, $rootScope) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', 'UserService'];
+    function AuthenticationService($http, $cookies, $rootScope, UserService) {
         var service = {};
 
         service.Login = Login;
@@ -16,13 +16,10 @@
         return service;
 
         function Login(usuario, callback) {
-            $http({
-                method: 'POST',
-                url: 'http://localhost/manipulating-macros/api/resources.php/usuario/autenticate',
-                data: usuario
-            }).then(function (response) {
+            UserService.Autenticate(usuario)
+            .then(function (response) {
                 callback(response);
-            });
+            });        
         }
 
         function SetCredentials(response) {

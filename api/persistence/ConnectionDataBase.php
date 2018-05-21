@@ -18,7 +18,7 @@ class ConnectionDataBase extends PDO
     {
         if (!isset(self::$connection)) {
             try {
-                self::$connection = new ConnectionDataBase("mysql:dbname=manipulating-macros;host=localhost", "root", "root");
+                self::$connection = new ConnectionDataBase("mysql:dbname=manipulating-macros;host=localhost", "root", "");
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (Exception $ex) {
                 echo 'Não foi possível conectar-se ao banco de dados.';

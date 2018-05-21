@@ -3,55 +3,43 @@
     
     angular
     .module('macros')
-    .factory('UsuarioService', UsuarioService);
+    .factory('UserService', UserService);
     
-    UsuarioService.$inject = ['$http'];
-    function UsuarioService($http) {
-        var service = {};
+    UserService.$inject = ['ApplicationUtils'];
+    function UserService(ApplicationUtils) {
+        var request = {
+            Find : Find,
+            FindAll : FindAll,
+            Save : Save,
+            Delete : Delete,
+            Update : Update,
+            Autenticate : Autenticate
+        }
         
-        service.findAll = GetAll;
-        service.findById = FindById;
-        service.Save = Save;
-        service.Update = Update;
-        service.Delete = Delete;
-        service.Autenticate = Autenticate;
+        return request;
         
-        return service;
+        function Find(id) {
+            return ApplicationUtils.get('usuario/find/' + id);
+        }
         
         function FindAll() {
-            return $http.get('usuario/findAll').then(handleSuccess, handleError('Erro ao buscar usuário.'));
+            return ApplicationUtils.get('usuario/findAll');
         }
         
-        function FindById(id) {
-            return $http.get('usuario/find' + id).then(handleSuccess, handleError('Erro ao buscar usuário.'));
-        }
-        
-        function Save(user) {
-            return $http.post('usuario/save' + user).then(handleSuccess, handleError('Erro ao salvar usuário.'));
-        }
-        
-        function Update(user) {
-            return $http.post('usuario/update' + user).then(handleSuccess, handleError('Erro ao alterar usuário.'));
+        function Save(user){
+            return ApplicationUtils.post('usuario/save', JSON.stringify(user));
         }
         
         function Delete(id) {
-            return $http.get('usuario/delete' + id).then(handleSuccess, handleError('Erro ao deletar usuário.'));
+            return ApplicationUtils.get('usuario/delete/' + id);
         }
         
-        function Autenticate(user) {
-            return $http.post('http://localhost/manipulating-macros/api/resources.php/usuario/autenticate' + user).then(handleSuccess, handleError('Erro ao buscar usuário.'));
+        function Update(user){
+            return ApplicationUtils.post('usuario/update', JSON.stringify(user));
         }
         
-        // private functions
-        
-        function handleSuccess(res) {
-            return res.data;
-        }
-        
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
+        function Autenticate(user){
+            return ApplicationUtils.post('usuario/autenticate', JSON.stringify(user));
         }
     }
-});
+})();

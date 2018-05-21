@@ -7,10 +7,18 @@
     
     ApplicationUtils.$inject = ['$http'];
     function ApplicationUtils($http) {
-        var utils = {};
+        var httpUtils = {
+            defaultHeader : 'Content-Type:application/x-www-form-urlencoded; charset=UTF-8',
+            urlWS : 'http://localhost:8080/manipulating-macros/api/resources.php/'
+        }
         
-        utils.formatDate = formatDate;
-        utils.calculateCalories = calculateCalories;
+        var utils = {
+            formatDate : formatDate,
+            calculateCalories : calculateCalories,
+            post : postRequest,
+            get : getRequest
+        };
+        
         return utils;
         
         function formatDate (data){
@@ -29,6 +37,7 @@
             return  ano + "-" + mes + "-" + dia;
         }
         
+        //TODO [Marcelo Zilio] criar este método na API.
         function calculateCalories(usuario) {
             var tmb = ((10*usuario.peso) + (6.25*usuario.altura)) - (5*usuario.idade);
             
@@ -42,6 +51,23 @@
             } else {
                 return tmb;
             }    
-        }        
+        } 
+        
+        function postRequest (urlPath, data) {
+            return $http({
+                method: 'POST',
+                headers: httpUtils.defaultHeader,
+                url: httpUtils.urlWS + urlPath,
+                data: data || {}
+            });
+        }
+        
+        function getRequest (urlPath, data) {
+            return $http({
+                method: 'GET',
+                headers: httpUtils.defaultHeader,
+                url: httpUtils.urlWS + urlPath
+            });
+        }    
     }
 })();
