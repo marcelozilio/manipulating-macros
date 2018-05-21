@@ -24,6 +24,11 @@
             templateUrl: 'pages/registrar/registrar.html',
             controllerAs: 'vm'
         })
+        .when('/alimentos', {
+            controller: 'AlimentosController',
+            templateUrl: 'pages/alimento/alimentos.html',
+            controllerAs: 'vm'
+        })
         .otherwise({ redirectTo: '/login' });
     }
     
