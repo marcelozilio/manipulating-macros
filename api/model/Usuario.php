@@ -15,6 +15,7 @@ class Usuario
     private $idade;
     private $sexo;
     private $calorias;
+    private $objetivo;
     private $senha;
     
     public function __construct()
@@ -45,6 +46,7 @@ class Usuario
             '"idade":'.$this->idade.','.
             '"sexo":"'.$this->sexo.'",'.
             '"calorias":'.$this->calorias.','.
+            '"objetivo":"'.$this->objetivo.'",'.
             '"senha":"'.$this->senha.'"}';    
         }
     }

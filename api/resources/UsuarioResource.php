@@ -48,7 +48,7 @@ $app->get('/delete/:id', function ($id) {
     }
 });
 
-$app->put('/update', function () use ($app) {
+$app->post('/update', function () use ($app) {
     try {
         $request = $app->request();
         $usuario = json_decode($request->getBody());
@@ -65,6 +65,17 @@ $app->post('/autenticate', function () use ($app) {
         $usuario = json_decode($request->getBody());
         $service = new UsuarioService();
         echo json_encode($service->autenticate($usuario));
+    } catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+});
+
+$app->post('/calculatecalories', function () use ($app) {
+    try {
+        $request = $app->request();
+        $usuario = json_decode($request->getBody());
+        $service = new UsuarioService();
+        echo json_encode($service->calculateCalories($usuario));
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
     }

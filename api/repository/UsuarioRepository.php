@@ -20,7 +20,7 @@ class UsuarioRepository implements IRepository
     public function save($object)
     {
         try {
-            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS,SENHA)values(null,?,?,?,?,?,?,?,?)");
+            $stat=$this->connection->prepare("INSERT INTO USUARIO(ID_USUARIO,EMAIL,NOME,ALTURA,PESO,IDADE,SEXO,CALORIAS,OBJETIVO,SENHA)values(null,?,?,?,?,?,?,?,?,?)");
             $stat->bindValue(1, $object->email);
             $stat->bindValue(2, $object->nome);
             $stat->bindValue(3, $object->altura);
@@ -28,11 +28,12 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(5, $object->idade);
             $stat->bindValue(6, $object->sexo);
             $stat->bindValue(7, $object->calorias);
-            $stat->bindValue(8, $object->senha);
+            $stat->bindValue(8, $object->objetivo);
+            $stat->bindValue(9, $object->senha);
             $stat->execute();
             return true;
         } catch (Exception $ex) {
-            throw new Exception('Erro ao incluir registro.');
+            throw new Exception('Erro ao incluir registro.'.$ex);
         }
     }
 
@@ -67,7 +68,7 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(1, $id);
             $stat->execute();
             $this->connection = null;
-            return 'Registro Excluído.';
+            return true;
         } catch (Exception $e) {
             throw new Exception('Não foi possível excluir o registro.');
         }
@@ -76,7 +77,7 @@ class UsuarioRepository implements IRepository
     public function update($object)
     {
         try {
-            $stat=$this->connection->prepare("UPDATE USUARIO SET EMAIL=?,NOME=?,ALTURA=?,PESO=?,IDADE=?,SEXO=?,CALORIAS=?,SENHA=? WHERE ID_USUARIO = ?");
+            $stat=$this->connection->prepare("UPDATE USUARIO SET EMAIL=?,NOME=?,ALTURA=?,PESO=?,IDADE=?,SEXO=?,CALORIAS=?,OBJETIVO=?,SENHA=? WHERE ID_USUARIO = ?");
             
             $stat->bindValue(1, $object->email);
             $stat->bindValue(2, $object->nome);
@@ -85,13 +86,14 @@ class UsuarioRepository implements IRepository
             $stat->bindValue(5, $object->idade);
             $stat->bindValue(6, $object->sexo);
             $stat->bindValue(7, $object->calorias);
-            $stat->bindValue(8, $object->senha);
-            $stat->bindValue(9, $object->id_usuario);
+            $stat->bindValue(8, $object->objetivo);
+            $stat->bindValue(9, $object->senha);
+            $stat->bindValue(10, $object->id_usuario);
             $stat->execute();
             $this->connection = null;
-            return 'Registro alterado.';
+            return true;
         } catch (Exception $ex) {
-            throw new Exception('Não foi possível alterar o registro.');
+            throw new Exception('Não foi possível alterar o registro.'.$ex);
         }
     }
 

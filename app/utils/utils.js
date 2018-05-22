@@ -5,18 +5,18 @@
     .module('macros')
     .factory('ApplicationUtils', ApplicationUtils);
     
-    ApplicationUtils.$inject = ['$http'];
-    function ApplicationUtils($http) {
+    ApplicationUtils.$inject = ['$http', '$rootScope'];
+    function ApplicationUtils($http, $rootScope) {
         var httpUtils = {
             defaultHeader : 'Content-Type:application/x-www-form-urlencoded; charset=UTF-8',
-            urlWS : 'http://localhost:8080/manipulating-macros/api/resources.php/'
+            urlWS : 'http://localhost/manipulating-macros/api/resources.php/'
         }
         
         var utils = {
             formatDate : formatDate,
-            calculateCalories : calculateCalories,
             post : postRequest,
-            get : getRequest
+            get : getRequest,
+            updateCurrentUser : UpdateCurrentUser
         };
         
         return utils;
@@ -37,22 +37,6 @@
             return  ano + "-" + mes + "-" + dia;
         }
         
-        //TODO [Marcelo Zilio] criar este método na API.
-        function calculateCalories(usuario) {
-            var tmb = ((10*usuario.peso) + (6.25*usuario.altura)) - (5*usuario.idade);
-            
-            usuario.sexo == 'Masculino' ? tmb += 5 : tmb -= 161;
-            
-            tmb *= 1.2;            
-            if (usuario.objetivo == 'cutting') {
-                return tmb - 500;
-            } else if (usuario.objetivo == 'bulking') {
-                return tmb + 500;
-            } else {
-                return tmb;
-            }    
-        } 
-        
         function postRequest (urlPath, data) {
             return $http({
                 method: 'POST',
@@ -68,6 +52,23 @@
                 headers: httpUtils.defaultHeader,
                 url: httpUtils.urlWS + urlPath
             });
-        }    
+        }
+        
+        function UpdateCurrentUser(usuario) {
+            $rootScope.globals = {
+                currentUser: {
+                    id_usuario: usuario.id_usuario,
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    altura: usuario.altura,
+                    peso: usuario.peso,
+                    idade: usuario.idade,
+                    sexo: usuario.sexo,
+                    calorias: usuario.calorias,
+                    objetivo: usuario.objetivo,
+                    senha: usuario.senha
+                }
+            };          
+        }
     }
 })();

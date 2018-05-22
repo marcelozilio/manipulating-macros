@@ -19,6 +19,7 @@ class UsuarioService implements IService
     public function save($object)
     {
         try {
+            $object->calorias = $this->calculateCalories($object);
             return $this->repository->save($object);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -55,12 +56,13 @@ class UsuarioService implements IService
     public function update($object)
     {
         try {
+            $object->calorias = $this->calculateCalories($object);
             return $this->repository->update($object);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }  
     }
-
+    
     public function autenticate($object)
     {
         try {
@@ -68,5 +70,21 @@ class UsuarioService implements IService
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }  
+    }
+    
+    public function calculateCalories($usuario) 
+    {
+        $tmb = ((10 * $usuario->peso) + (6.25 * $usuario->altura)) - (5 * $usuario->idade);
+        
+        $usuario->sexo == 'Masculino' ? $tmb += 5 : $tmb -= 161;
+        
+        $tmb *= 1.2;
+        if ($usuario->objetivo == 'cutting') {
+            return $tmb - 500;
+        } elseif ($usuario->objetivo == 'bulking') {
+            return $tmb + 500;
+        } else {
+            return $tmb;
+        }    
     }
 }

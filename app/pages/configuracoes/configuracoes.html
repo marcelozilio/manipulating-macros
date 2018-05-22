@@ -6,7 +6,7 @@
 <div class="form-group">
     <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
 </div>
-<form name="form" ng-submit="vm.register()" role="form">
+<form name="form" ng-submit="vm.update()" role="form">
     <div class="form-row">
         <div class="col-md-12 form-group">
             <label>Nome</label>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-8 form-group">
             <label>E-mail</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" readonly />
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email"  />
         </div>
         <div class="col-md-4 form-group">
             <label>Senha</label>
@@ -22,15 +22,15 @@
         </div>
         <div class="col-md-4 form-group">            
             <label>Altura</label>
-            <input type="number" name="altura" id="altura" class="form-control" ng-model="vm.user.altura" required>                
+            <input type="text" name="altura" id="altura" class="form-control" ng-model="vm.user.altura" required>                
         </div>
         <div class="col-md-4 form-group">
             <label>Peso</label>
-            <input type="number" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
+            <input type="text" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
         </div>
         <div class="col-md-4 form-group">
             <label>Idade</label>
-            <input type="number" name="idade" id="idade" class="form-control" ng-model="vm.user.idade" required />
+            <input type="text" name="idade" id="idade" class="form-control" ng-model="vm.user.idade" required />
         </div>
         <div class="col-md-6 form-group">
             <label>Sexo</label>

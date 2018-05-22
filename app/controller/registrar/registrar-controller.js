@@ -14,9 +14,7 @@
         function register() {
             vm.dataLoading = true;
             
-            vm.user.calorias = ApplicationUtils.calculateCalories(vm.user);
-            
-            UserService.save(vm.user)
+            UserService.Save(vm.user)
             .then(function (response){
                 if (response.data == true) {
                     FlashService.Success('Usuário cadastrado com sucesso, faça login para continuar.', true);
@@ -27,6 +25,5 @@
                 }
             });
         }
-    }
-    
+    }    
 })();
