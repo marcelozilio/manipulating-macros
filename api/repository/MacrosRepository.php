@@ -24,24 +24,24 @@ class MacrosRepository implements IRepository
             
             $stat->bindValue(1, $object->id_usuario);
             $stat->bindValue(2, $object->proteina);
-            $stat->bindValue(3, $object->carboidratro);
+            $stat->bindValue(3, $object->carboidrato);
             $stat->bindValue(4, $object->gordura);
             $stat->execute();
             $this->connection = null;
-            return 'Registro Incluído.';
+            return true;
         } catch (Exception $ex) {
-            throw new Exception('Erro ao incluir registro.');
+            throw new Exception('Erro ao incluir macros');
         }
     }
 
     public function find($id)
     {
         try {
-            $stat = $this->connection->query("SELECT * FROM MACROS WHERE ID_MACROS = $id");
+            $stat = $this->connection->query("SELECT * FROM MACROS WHERE ID_USUARIO = $id");
             $macros = $stat->fetchObject('Macros');
             return $macros;
         } catch (Exception $ex) {
-            throw new Exception('Não foi possível buscar o registro.');
+            return false;
         }
     }
 
@@ -76,15 +76,15 @@ class MacrosRepository implements IRepository
         try {
             $stat=$this->connection->prepare("UPDATE MACROS SET PROTEINA=?,CARBOIDRATO=?,GORDURA=? WHERE ID_USUARIO = ?");
             
-            $stat->bindValue(1, $object->proteina);
-            $stat->bindValue(2, $object->carboidratro);
-            $stat->bindValue(3, $object->gordura);
-            $stat->bindValue(4, $object->id_usuario);
+            $stat->bindValue(1, $object->PROTEINA);
+            $stat->bindValue(2, $object->CARBOIDRATO);
+            $stat->bindValue(3, $object->GORDURA);
+            $stat->bindValue(4, $object->ID_USUARIO);
             $stat->execute();
             $this->connection = null;
-            return 'Registro alterado.';
+            return true;
         } catch (Exception $ex) {
-            throw new Exception('Não foi possível alterar o registro.');
+            throw new Exception('Não foi possível alterar o registro.'.$ex);
         }
     }
 }

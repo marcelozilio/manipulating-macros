@@ -1,54 +1,56 @@
-<div class="header">
-    <h3 class="text-center">Registrar-se</h3>
+<div class="container">
+    <div class="header">
+        <h3 class="text-center">Registrar-se</h3>
+    </div>
+    <div class="form-group">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+    <form name="form" ng-submit="vm.register()" role="form">
+        <div class="form-row">
+            <div class="col-md-12 form-group">
+                <label>Nome</label>
+                <input type="text" name="nome" id="nome" class="form-control" ng-model="vm.user.nome" required />
+            </div>
+            <div class="col-md-8 form-group">
+                <label>E-mail</label>
+                <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Senha</label>
+                <input type="password" name="senha" id="senha" class="form-control" ng-model="vm.user.senha" required />
+            </div>
+            <div class="col-md-4 form-group">            
+                <label>Altura</label>
+                <input type="text" name="altura" id="altura" class="form-control" ng-model="vm.user.altura" required>                
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Peso</label>
+                <input type="text" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Idade</label>
+                <input type="text" name="idade" id="idade" class="form-control" ng-model="vm.user.idade" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Sexo</label>
+                <select name="sexo" id="sexo" class="form-control" ng-model="vm.user.sexo" required>
+                    <option selected>Masculino</option>
+                    <option>Feminino</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Qual o seu objetivo?</label>
+                <select name="objetivo" id="objetivo" class="form-control" ng-model="vm.user.objetivo" required>
+                    <option value="cutting">Perder peso (Cutting)</option>
+                    <option value="maintenance" selected>Manter o peso (Maintenance)</option>
+                    <option value="bulking">Ganhar peso (Bulking)</option>                
+                </select>
+            </div>
+            <div class="col-md-12 form-actions">
+                <button type="submit" class="btn btn-primary">Registrar-se</button>        
+                <a href="#!/login" class="btn btn-danger">Cancelar</a>
+            </div>
+        </div>  
+    </form>
 </div>
-<div class="form-group">
-    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-</div>
-<form name="form" ng-submit="vm.register()" role="form">
-    <div class="form-row">
-        <div class="col-md-12 form-group">
-            <label>Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control" ng-model="vm.user.nome" required />
-        </div>
-        <div class="col-md-8 form-group">
-            <label>E-mail</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
-        </div>
-        <div class="col-md-4 form-group">
-            <label>Senha</label>
-            <input type="password" name="senha" id="senha" class="form-control" ng-model="vm.user.senha" required />
-        </div>
-        <div class="col-md-4 form-group">            
-            <label>Altura</label>
-            <input type="text" name="altura" id="altura" class="form-control" ng-model="vm.user.altura" required>                
-        </div>
-        <div class="col-md-4 form-group">
-            <label>Peso</label>
-            <input type="text" name="peso" id="peso" class="form-control" ng-model="vm.user.peso" required />                
-        </div>
-        <div class="col-md-4 form-group">
-            <label>Idade</label>
-            <input type="text" name="idade" id="idade" class="form-control" ng-model="vm.user.idade" required />
-        </div>
-        <div class="col-md-6 form-group">
-            <label>Sexo</label>
-            <select name="sexo" id="sexo" class="form-control" ng-model="vm.user.sexo" required>
-                <option selected>Masculino</option>
-                <option>Feminino</option>
-            </select>
-        </div>
-        <div class="col-md-6 form-group">
-            <label>Qual o seu objetivo?</label>
-            <select name="objetivo" id="objetivo" class="form-control" ng-model="vm.user.objetivo" required>
-                <option value="cutting">Perder peso (Cutting)</option>
-                <option value="maintenance" selected>Manter o peso (Maintenance)</option>
-                <option value="bulking">Ganhar peso (Bulking)</option>                
-            </select>
-        </div>
-        <div class="col-md-12 form-actions">
-            <button type="submit" class="btn btn-primary">Registrar-se</button>        
-            <a href="#!/login" class="btn btn-danger">Cancelar</a>
-        </div>
-    </div>  
-</form>
 <div ng-include="'pages/footer/footer.html'"></div>

@@ -17,7 +17,7 @@
         }
         
         function loadCurrentUser() {
-            UserService.Find($rootScope.globals.currentUser.id)
+            UserService.Find($rootScope.globals.currentUser.id_usuario)
             .then(function (response) {
                 vm.user = response.data;
             });

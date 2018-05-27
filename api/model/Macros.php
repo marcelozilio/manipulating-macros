@@ -33,10 +33,10 @@ class Macros
     
     public function __toString()
     {
-        return '{"id_macros":'.$this->id_macros.','. 
-            '"id_usuario":'.$this->id_usuario.','.
-            '"proteina":'.$this->proteina.','.
-            '"carboidrato":'.$this->carboidrato.','.
-            '"gordura":'.$this->gordura.'}';
+        return '{"ID_MACROS":'.$this->id_macros.','. 
+            '"ID_USUARIO":'.$this->id_usuario.','.
+            '"PROTEINA":'.$this->proteina.','.
+            '"CARBOIDRATO":'.$this->carboidrato.','.
+            '"GORDURA":'.$this->gordura.'}';
         }
     }

@@ -1,0 +1,23 @@
+<div ng-include="'pages/navbar/navbar.html'"></div>
+<div class="container">
+    <div class="form-group">
+        <h3>Adicionar Peso</h3>
+        <div class="dropdown-divider"></div>
+    </div>
+    <div class="form-group">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+    <form name="form" ng-submit="vm.save()" role="form">
+        <div class="form-row">
+            
+            <div class="col-md-3 form-group">            
+                <label>Seu peso atual</label>
+                <input type="text" name="peso" id="peso" class="form-control" ng-model="vm.userPeso.peso" required>                
+            </div>        
+            <div class="col-md-12 form-actions">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>  
+    </form>
+</div>
+<div ng-include="'pages/footer/footer.html'"></div>

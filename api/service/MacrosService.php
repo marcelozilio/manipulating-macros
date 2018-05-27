@@ -28,7 +28,7 @@ class MacrosService implements IService
     public function find($id)
     {
         try {
-            return $this->repository->find($cod);
+            return $this->repository->find($id);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -59,5 +59,29 @@ class MacrosService implements IService
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }  
+    }
+    
+    public function calculateMacros($usuario) 
+    {
+        try {
+            $macros = new Macros();
+            $calories = $usuario->calorias;
+            $protein = $usuario->peso * 2.2;
+            $calories = ($calories - ($protein * 4)) / 2;
+            $carbs = $calories / 4;
+            $fat = $calories / 9;
+
+            $macros->id_macros = 0;
+            $macros->id_usuario = $usuario->id_usuario;
+            $macros->proteina = $protein;
+            $macros->carboidrato = $carbs;
+            $macros->gordura = $fat;
+
+            $this->save($macros);
+            return $macros->__toString();
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        
     }
 }

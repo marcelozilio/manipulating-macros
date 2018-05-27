@@ -39,6 +39,16 @@
             templateUrl: 'pages/macros/macros.html',
             controllerAs: 'vm'
         })
+        .when('/configuracoes/adicionar-peso', {
+            controller: 'UsuarioPesoController',
+            templateUrl: 'pages/configuracoes/add-peso/adicionar-peso.html',
+            controllerAs: 'vm'
+        })
+        .when('/linha-tempo', {
+            controller: 'LinhaTempoController',
+            templateUrl: 'pages/linha-tempo/linha-tempo.html',
+            controllerAs: 'vm'
+        })
         .otherwise({ redirectTo: '/login' });
     }
     

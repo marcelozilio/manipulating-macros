@@ -1,33 +1,35 @@
 <div ng-include="'pages/navbar/navbar.html'"></div>
-<div class="form-group">
-    <h3>Macros</h3>
-    <div class="dropdown-divider"></div>
+<div class="container">
+    <div class="form-group">
+        <h3>Macros</h3>
+        <div class="dropdown-divider"></div>
+    </div>
+    <div class="form-group">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+    <form name="form" ng-submit="vm.update()" role="form">
+        <div class="form-row">
+            
+            <div class="col-md-3 form-group">            
+                <label>Proteína</label>
+                <input type="text" name="proteina" id="proteina" class="form-control" ng-model="vm.macros.PROTEINA" required>                
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Carboidrato</label>
+                <input type="text" name="carboidrato" id="carboidrato" class="form-control" ng-model="vm.macros.CARBOIDRATO" required />                
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Gordura</label>
+                <input type="text" name="gordura" id="gordura" class="form-control" ng-model="vm.macros.GORDURA" required />
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Calorias por dia</label>
+                <input type="text" name="calorias" id="calorias" class="form-control" ng-model="vm.macros.CALORIAS" readonly />
+            </div>      
+            <div class="col-md-12 form-actions">
+                <button type="submit" class="btn btn-primary">Salvar</button>        
+            </div>
+        </div>  
+    </form>
 </div>
-<div class="form-group">
-    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-</div>
-<form name="form" ng-submit="vm.register()" role="form">
-    <div class="form-row">
-        
-        <div class="col-md-3 form-group">            
-            <label>Proteína</label>
-            <input type="number" name="proteina" id="proteina" class="form-control" ng-model="vm.macros.proteina" required>                
-        </div>
-        <div class="col-md-3 form-group">
-            <label>Carboidrato</label>
-            <input type="number" name="carboidrato" id="carboidrato" class="form-control" ng-model="vm.macros.carboidrato" required />                
-        </div>
-        <div class="col-md-3 form-group">
-            <label>Grodura</label>
-            <input type="number" name="gordura" id="gordura" class="form-control" ng-model="vm.macros.gordura" required />
-        </div>
-        <div class="col-md-3 form-group">
-            <label>Calorias por dia</label>
-            <input type="number" name="calorias" id="calorias" class="form-control" ng-model="vm.macros.calorias" readonly />
-        </div>      
-        <div class="col-md-12 form-actions">
-            <button type="submit" class="btn btn-primary">Salvar</button>        
-        </div>
-    </div>  
-</form>
 <div ng-include="'pages/footer/footer.html'"></div>    

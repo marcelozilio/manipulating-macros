@@ -1,0 +1,19 @@
+/* 
+Created on : 26/05/2017, 22:15
+Author     : Marcelo Zilio Correa
+*/
+.container {
+    margin-top: 1%;
+}
+
+.panel-login {
+    width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.panel-login h3 {
+    text-align: left;
+}

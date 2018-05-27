@@ -10,7 +10,7 @@
         var vm = this;
         vm.user = {};
         vm.update = update;
-
+        
         initController();
         
         function update() {
@@ -29,11 +29,7 @@
         }
         
         function initController() {
-            loadCurrentUser();        
-        }
-        
-        function loadCurrentUser() {
-            vm.user = $rootScope.globals.currentUser;
+            vm.user = $rootScope.globals.currentUser;        
         }
     }
 })();
