@@ -21,6 +21,7 @@
                 } else {
                     MacrosService.Calculate($rootScope.globals.currentUser)
                     .then(function (response){
+                        MacrosService.Save(response.data);
                         vm.macros = response.data;
                     });
                 }

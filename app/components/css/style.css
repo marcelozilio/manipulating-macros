@@ -6,6 +6,20 @@ Author     : Marcelo Zilio Correa
     margin-top: 1%;
 }
 
+.navbar {
+    font-weight: 500;
+    background-color: #42A5F5;
+    color:#f8f9fa;
+}
+
+.nav-item {
+    color: #f8f9fa;
+}
+
+a.nav-link {
+    color:#f8f9fa;
+}
+
 .panel-login {
     width: 600px;
     text-align: center;
@@ -16,4 +30,18 @@ Author     : Marcelo Zilio Correa
 
 .panel-login h3 {
     text-align: left;
+}
+
+.linha-tempo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.linha {
+    border-color: #343a40;
+    border-left: 2px solid;
+    box-sizing: border-box;
+    height: 200px;
 }

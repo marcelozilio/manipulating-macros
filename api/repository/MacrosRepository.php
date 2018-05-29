@@ -22,10 +22,10 @@ class MacrosRepository implements IRepository
         try {
             $stat=$this->connection->prepare("INSERT INTO MACROS(ID_MACROS,ID_USUARIO,PROTEINA,CARBOIDRATO,GORDURA)values(null,?,?,?,?)");
             
-            $stat->bindValue(1, $object->id_usuario);
-            $stat->bindValue(2, $object->proteina);
-            $stat->bindValue(3, $object->carboidrato);
-            $stat->bindValue(4, $object->gordura);
+            $stat->bindValue(1, $object->ID_USUARIO);
+            $stat->bindValue(2, $object->PROTEINA);
+            $stat->bindValue(3, $object->CARBOIDRATO);
+            $stat->bindValue(4, $object->GORDURA);
             $stat->execute();
             $this->connection = null;
             return true;

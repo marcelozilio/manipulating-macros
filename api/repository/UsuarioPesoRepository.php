@@ -27,9 +27,9 @@ class UsuarioPesoRepository implements IRepository
             $stat->bindValue(3, $object->dataPesagem);
             $stat->execute();
             $this->connection = null;
-            return 'Registro Incluído.';
+            return true;
         } catch (Exception $ex) {
-            throw new Exception('Erro ao incluir registro.');
+            throw new Exception('Erro ao incluir registro.'.$ex);
         }
     }
 
@@ -41,7 +41,7 @@ class UsuarioPesoRepository implements IRepository
     public function find($id)
     {
         try {
-            $stat = $this->connection->query("SELECT * FROM USUARIO_PESO WHERE ID_USUARIO = $id");
+            $stat = $this->connection->query("SELECT * FROM USUARIO_PESO WHERE ID_USUARIO = $id ORDER BY ID_USUARIO_PESO DESC");
             $array = array();
             $array = $stat->fetchAll(PDO::FETCH_OBJ);
             $this->connection = null;

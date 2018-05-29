@@ -76,8 +76,6 @@ class MacrosService implements IService
             $macros->proteina = $protein;
             $macros->carboidrato = $carbs;
             $macros->gordura = $fat;
-
-            $this->save($macros);
             return $macros->__toString();
         } catch(Exception $e) {
             throw new Exception($e->getMessage());

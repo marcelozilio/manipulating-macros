@@ -5,14 +5,18 @@
     .module('macros')
     .controller('LinhaTempoController', LinhaTempoController);
     
-    LinhaTempoController.$inject = ['$location', '$rootScope','ApplicationUtils'];
-    function LinhaTempoController($location, $rootScope, ApplicationUtils) {
+    LinhaTempoController.$inject = ['$rootScope','ApplicationUtils', 'LinhaTempoService'];
+    function LinhaTempoController($rootScope, ApplicationUtils,LinhaTempoService) {
         var vm = this;
-        vm.user = {};
+        vm.userPesos = [];
     
-        initController();    
+        initController();
+        
         function initController() {
-    
+            LinhaTempoService.Find($rootScope.globals.currentUser.id_usuario)
+            .then(function (response){
+                vm.userPesos = response.data;
+            });
         }
     }
 })();

@@ -33,7 +33,7 @@ class UsuarioPesoService implements IService
     public function find($id)
     {
         try {
-            return $this->repository->find($cod);
+            return $this->repository->find($id);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
