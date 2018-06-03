@@ -1,19 +1,19 @@
 <?php
-include_once 'repository/MacrosRepository.php';
+include_once 'repository/AlimentoRepository.php';
 include_once 'interface/IService.php';
 /**
-* Serviços de macros.
+* Serviços de Alimento.
 * 
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
-* @since: 05/05/2018
+* @since: 02/06/2018
 */
-class MacrosService implements IService
+class AlimentoService implements IService
 {
     private $repository;
     
     public function __construct()
     {
-        $this->repository = new MacrosRepository();
+        $this->repository = new AlimentoRepository();
     }
     
     public function save($object)
@@ -60,26 +60,13 @@ class MacrosService implements IService
             throw new Exception($e->getMessage());
         }  
     }
-    
-    public function calculateMacros($usuario) 
+
+    public function findByCategoria($id)
     {
         try {
-            $macros = new Macros();
-            $calories = $usuario->calorias;
-            $protein = $usuario->peso * 2.2;
-            $calories = ($calories - ($protein * 4)) / 2;
-            $carbs = $calories / 4;
-            $fat = $calories / 9;
-
-            $macros->id_macros = 0;
-            $macros->id_usuario = $usuario->id_usuario;
-            $macros->proteina = $protein;
-            $macros->carboidrato = $carbs;
-            $macros->gordura = $fat;
-            return $macros->__toString();
-        } catch(Exception $e) {
+            return $this->repository->findByCategoria($id);
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        
     }
 }

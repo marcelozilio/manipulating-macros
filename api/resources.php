@@ -33,6 +33,20 @@ $app->group('/macros', function () use ($app) {
 });
 
 /**
+ * Recursos de categoria de categoria.
+ */
+$app->group('/categoria', function () use ($app) {
+    include_once 'resources/CategoriaResource.php';
+});
+
+/**
+ * Recursos de categoria de alimento.
+ */
+$app->group('/alimento', function () use ($app) {
+    include_once 'resources/AlimentoResource.php';
+});
+
+/**
  * Recursos de pesagem do usuário.
  */
 $app->group('/usuario-peso', function () use ($app) {

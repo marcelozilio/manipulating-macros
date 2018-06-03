@@ -3,33 +3,53 @@
     <div class="form-group">
         <h3>Alimentos</h3>
         <div class="dropdown-divider"></div>
-    </div>
-    <div class="form-group">
-        <input type="text" placeholder="Qual alimento você está pesquisando?" class="form-control">
-    </div>
-    <div class="form-group">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Proteína</th>
-                    <th scope="col">Carboidrato</th>
-                    <th scope="col">Gordura</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Arroz integral cozido</td>
-                    <td>Cereais e derivados</td>
-                    <td>2.5</td>
-                    <td>25.8</td>
-                    <td>1</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    </div>    
+    <div class="accordion" id="accordionCategoria">
+        <div class="card" ng-repeat="categoria in vm.categorias">
+            <div class="card-header" id="heading{{categoria.ID_CATEGORIA}}">
+                <h5 class="mb-0">
+                    <button ng-click="vm.loadAlimentos(categoria.ID_CATEGORIA)" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{categoria.ID_CATEGORIA}}" aria-expanded="true" aria-controls="collapse{{categoria.ID_CATEGORIA}}">
+                        {{categoria.DESCRICAO_CATEGORIA}}
+                    </button>
+                </h5>
+            </div>  
+            <div id="collapse{{categoria.ID_CATEGORIA}}" class="collapse show" aria-labelledby="heading{{categoria.ID_CATEGORIA}}" data-parent="#accordionCategoria">
+                <div class="card-body">
+                    <div class="form-group">
+                        <input type="text" placeholder="Qual alimento você está pesquisando?" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Proteína</th>
+                                    <th scope="col">Carboidrato</th>
+                                    <th scope="col">Gordura</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="alimento in vm.alimentos">
+                                    <td>{{alimento.DESCRICAO}}</td>
+                                    <td>{{alimento.ID_CATEGORIA}}</td>
+                                    <td>{{alimento.PROTEINA}}</td>
+                                    <td>{{alimento.CARBOIDRATO}}</td>
+                                    <td>{{alimento.LIPIDEOS}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div ng-include="'pages/footer/footer.html'"></div>
+<script>
+    $(function () {
+        $('.collapse').collapse();
+    }); 
+</script>

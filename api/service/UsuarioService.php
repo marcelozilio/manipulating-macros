@@ -5,7 +5,7 @@ include_once 'interface/IService.php';
 * Serviços de usuário.
 * 
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
-* @since: 01/05/2017
+* @since: 01/05/2018
 */
 class UsuarioService implements IService
 {

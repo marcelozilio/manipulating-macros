@@ -5,7 +5,7 @@ include_once 'interface/IService.php';
 * Serviços de pesagem do usuário.
 * 
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
-* @since: 05/05/2017
+* @since: 05/05/2018
 */
 class UsuarioPesoService implements IService
 {
