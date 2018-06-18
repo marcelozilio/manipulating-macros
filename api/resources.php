@@ -53,4 +53,11 @@ $app->group('/usuario-peso', function () use ($app) {
     include_once 'resources/UsuarioPesoResource.php';
 });
 
+/**
+ * Recursos para refeição.
+ */
+$app->group('/refeicao', function () use ($app) {
+    include_once 'resources/RefeicaoResource.php';
+});
+
 $app->run();
