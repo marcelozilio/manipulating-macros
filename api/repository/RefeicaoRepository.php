@@ -8,7 +8,7 @@ require_once 'model/Refeicao.php';
 * @author: Marcelo Zilio Correa - marcelo.zilio@hotmail.com
 * @since: 17/06/2018
 */
-class MacrosRepository implements IRepository
+class RefeicaoRepository implements IRepository
 {
     private $connection = null;
 

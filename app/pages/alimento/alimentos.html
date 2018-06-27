@@ -5,10 +5,10 @@
         <div class="dropdown-divider"></div>
     </div>    
     <div class="accordion" id="accordionCategoria">
-        <div class="card" ng-repeat="categoria in vm.categorias">
+        <div class="card" ng-repeat="categoria in vm.categorias track by categoria.ID_CATEGORIA ">
             <div class="card-header" id="heading{{categoria.ID_CATEGORIA}}">
                 <h5 class="mb-0">
-                    <button ng-click="vm.loadAlimentos(categoria.ID_CATEGORIA)" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{categoria.ID_CATEGORIA}}" aria-expanded="false" aria-controls="collapse{{categoria.ID_CATEGORIA}}">
+                    <button ng-click="vm.loadAlimentos(categoria.ID_CATEGORIA)" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{categoria.ID_CATEGORIA}}" aria-expanded="true" aria-controls="collapse{{categoria.ID_CATEGORIA}}">
                         {{categoria.DESCRICAO_CATEGORIA}}
                     </button>
                 </h5>
@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="alimento in vm.alimentos">
+                                <tr ng-repeat="alimento in vm.alimentos track by alimento.ID_ALIMENTO">
                                     <td>{{alimento.DESCRICAO}}</td>
                                     <td>{{alimento.ID_CATEGORIA}}</td>
                                     <td>{{alimento.PROTEINA}}</td>
