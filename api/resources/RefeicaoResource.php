@@ -58,3 +58,23 @@ $app->post('/update', function () use ($app) {
         echo json_encode($e->getMessage());
     }
 });
+
+$app->get('/findRefeicoesByDia/:id', function ($id) {
+    try {
+        $service = new RefeicaoService();
+        $refeicoes = $service->findRefeicoesByDia($id);
+        echo json_encode($refeicoes, JSON_UNESCAPED_UNICODE);
+    } catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+});
+
+$app->get('/saveRefeicoesFromDiario/:id', function ($id) {
+    try {
+        $service = new RefeicaoService();
+        $retorno = $service->saveRefeicoesFromDiario($id);
+        echo json_encode($retorno);
+    } catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+});

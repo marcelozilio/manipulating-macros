@@ -30,7 +30,7 @@ class DiaRepository implements IRepository
             $this->connection = null;
             return true;
         } catch (Exception $ex) {
-            throw new Exception('Erro ao incluir registro');
+            throw new Exception('Erro ao incluir registro'.$ex->getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ class DiaRepository implements IRepository
             $dia = $stat->fetchObject('Dia');
             return $dia;
         } catch (Exception $ex) {
-            return false;
+            return $ex;
         }
     }
 

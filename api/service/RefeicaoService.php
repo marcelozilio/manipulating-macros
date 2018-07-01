@@ -60,4 +60,30 @@ class RefeicaoService implements IService
             throw new Exception($e->getMessage());
         }  
     }
+
+    public function findRefeicoesByDia($id)
+    {
+        try {
+            return $this->repository->findRefeicoesByDia($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function saveRefeicoesFromDiario($id)
+    {
+        try {
+            $refeicao = new Refeicao();
+            for ($i = 1; $i <= 6; $i++) {
+                $refeicao->ID_DIA = $id;
+                $refeicao->DESCRICAO = 'Refeição '.$i;
+                $refeicao->CALORIAS = 0;
+                $this->repository->save($refeicao);                        
+            }
+            $this->repository->closeConnection();
+            return true;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

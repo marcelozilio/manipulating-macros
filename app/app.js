@@ -14,6 +14,11 @@
             templateUrl: 'pages/home/home.html',
             controllerAs: 'vm'
         })
+        .when('/add-alimentos', {
+            controller: 'HomeController',
+            templateUrl: 'pages/home/components/modal-add-alimento.html',
+            controllerAs: 'vm'
+        })
         .when('/login', {
             controller: 'LoginController',
             templateUrl: 'pages/login/login.html',

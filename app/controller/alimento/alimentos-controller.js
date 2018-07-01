@@ -9,18 +9,12 @@
     function AlimentosController($rootScope, $http, AlimentoService) {
         var vm = this;
         vm.alimentos = [];
-        vm.alimentosModalAdd = [];
         vm.categorias = {};
         vm.loadAlimentos = loadAlimentos;
         
         initController();
         
-        function initController(){
-            AlimentoService.FindAllAlimentos()
-            .then(function (response){
-                vm.alimentosModalAdd = response.data;
-            });
-            
+        function initController(){        
             AlimentoService.FindAllCategorias()
             .then(function (response){
                 vm.categorias = response.data;

@@ -30,16 +30,16 @@
         <h3>Refeições</h3>
         <div class="dropdown-divider"></div>
         <div class="form-control">
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header bg-light" id="headingOne">
+            <div class="accordion" id="accordionRefeicoes">
+                <div class="card" ng-repeat="refeicao in vm.refeicoes track by refeicao.ID_REFEICAO">
+                    <div class="card-header bg-light" id="heading{{refeicao.ID_REFEICAO}}">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Refeição 1
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{refeicao.ID_REFEICAO}}" aria-expanded="true" aria-controls="collapse{{refeicao.ID_REFEICAO}}">
+                                {{refeicao.DESCRICAO}}
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="collapse{{refeicao.ID_REFEICAO}}" class="collapse" aria-labelledby="heading{{refeicao.ID_REFEICAO}}" data-parent="#accordionRefeicoes">
                         <table class="table">                
                             <thead>
                                 <tr>
@@ -61,7 +61,7 @@
                                 </tr>                    
                             </tbody>
                         </table>       
-                        <button class="btn btn-link" type="button" data-toggle="modal" data-target="#exampleModal">Adicionar alimento</button>                
+                        <button class="btn btn-link" ng-click="vm.loadAlimentos()" type="button" data-toggle="modal" data-target="#exampleModal">Adicionar alimento</button>
                     </div>
                 </div>                                                                    
             </div>

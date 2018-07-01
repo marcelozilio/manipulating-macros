@@ -17,21 +17,24 @@ class RefeicaoRepository implements IRepository
         $this->connection = ConnectionDataBase::getConnection();
     }
 
+    public function closeConnection()
+    {
+        $this->connection = null;
+    }
+
     public function save($object)
     {
         try {
-            $stat=$this->connection->prepare("INSERT INTO REFEICAO(ID_REFEICAO,ID_DIA,ID_USUARIO,DESCRICAO,CALORIAS)values(null,?,?,?,?)");
+            $stat=$this->connection->prepare("INSERT INTO REFEICAO(ID_REFEICAO,ID_DIA,DESCRICAO,CALORIAS)values(null,?,?,?)");
             
-            $stat->bindValue(1, $object->ID_REFEICAO);
-            $stat->bindValue(3, $object->ID_DIA);
-            $stat->bindValue(2, $object->ID_USUARIO);
-            $stat->bindValue(4, $object->DESCRICAO);
-            $stat->bindValue(5, $object->CALORIAS);
+            $stat->bindValue(1, $object->ID_DIA);
+            $stat->bindValue(2, $object->DESCRICAO);
+            $stat->bindValue(3, $object->CALORIAS);
             $stat->execute();
-            $this->connection = null;
+            
             return true;
         } catch (Exception $ex) {
-            throw new Exception('Erro ao incluir refeição');
+            throw new Exception('Erro ao incluir refeição'.$ex->getMessage());
         }
     }
 
@@ -85,6 +88,19 @@ class RefeicaoRepository implements IRepository
             return true;
         } catch (Exception $ex) {
             throw new Exception('Não foi possível alterar o registro.'.$ex);
+        }
+    }
+
+    public function findRefeicoesByDia($id)
+    {
+        try {
+            $stat = $this->connection->query("SELECT * FROM REFEICAO WHERE ID_DIA = $id");
+            $array = array();
+            $array = $stat->fetchAll(PDO::FETCH_OBJ);
+            $this->connection = null;
+            return $array;
+        } catch (Exception $ex) {
+            throw new Exception('Não foi possível buscar os registros');
         }
     }
 }
