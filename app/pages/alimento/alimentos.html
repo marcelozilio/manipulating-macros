@@ -13,31 +13,27 @@
                     </button>
                 </h5>
             </div>  
-            <div id="collapse{{categoria.ID_CATEGORIA}}" class="collapse show" aria-labelledby="heading{{categoria.ID_CATEGORIA}}" data-parent="#accordionCategoria">
+            <div id="collapse{{categoria.ID_CATEGORIA}}" class="collapse" aria-labelledby="heading{{categoria.ID_CATEGORIA}}" data-parent="#accordionCategoria">
                 <div class="card-body">
                     <div class="form-group">
-                        <input type="text" placeholder="Qual alimento você está pesquisando?" class="form-control">
+                        <input type="text" ng-model="pesquisa" placeholder="Qual alimento você está pesquisando?" class="form-control">
                     </div>
                     <div class="form-group">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Descrição</th>                                
                                     <th scope="col">Proteína</th>
                                     <th scope="col">Carboidrato</th>
-                                    <th scope="col">Gordura</th>
-                                    <th scope="col">Ações</th>
+                                    <th scope="col">Gordura</th>                            
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="alimento in vm.alimentos track by alimento.ID_ALIMENTO">
-                                    <td>{{alimento.DESCRICAO}}</td>
-                                    <td>{{alimento.ID_CATEGORIA}}</td>
-                                    <td>{{alimento.PROTEINA}}</td>
-                                    <td>{{alimento.CARBOIDRATO}}</td>
-                                    <td>{{alimento.LIPIDEOS}}</td>
-                                    <td></td>
+                                <tr ng-repeat="alimento in vm.alimentos | filter:pesquisa track by alimento.ID_ALIMENTO">
+                                    <td>{{alimento.DESCRICAO}}</td>                            
+                                    <td>{{alimento.PROTEINA}}g</td>
+                                    <td>{{alimento.CARBOIDRATO}}g</td>
+                                    <td>{{alimento.LIPIDEOS}}g</td>                            
                                 </tr>
                             </tbody>
                         </table>

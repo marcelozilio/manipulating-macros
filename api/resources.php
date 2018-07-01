@@ -60,4 +60,11 @@ $app->group('/refeicao', function () use ($app) {
     include_once 'resources/RefeicaoResource.php';
 });
 
+/**
+ * Recursos para dia.
+ */
+$app->group('/dia', function () use ($app) {
+    include_once 'resources/DiaResource.php';
+});
+
 $app->run();

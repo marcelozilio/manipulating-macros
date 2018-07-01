@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div ng-controller="AlimentosController as ctrl" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,22 +7,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <input type="text" placeholder="Digite o nome ou marca do alimento que você está procurando aqui" class="form-control">
-                <table class="table">                
+            <div class="modal-body">                
+                <input type="text" ng-model="pesquisa" placeholder="Digite o nome ou marca do alimento que você está procurando aqui" class="form-control">
+                <table ng-show="pesquisa" class="table">
                     <thead>
                         <tr>
                             <th>Alimento</th>
+                            <th>Quantidade</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>        
+                    <tbody>
+                        <tr ng-repeat="alimento in ctrl.alimentosModalAdd | filter:pesquisa track by alimento.ID_ALIMENTO">
+                            <td>{{alimento.DESCRICAO}}</td>
+                            <td><input type="number" class="form-control"></td>                        
+                            <td></td>
+                        </tr>
                     </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Adicionar</button>
+                </table>            
             </div>
         </div>
     </div>
