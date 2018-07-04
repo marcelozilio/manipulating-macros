@@ -11,9 +11,9 @@ require_once 'service/RefeicaoAlimentoService.php';
 $app->post('/save', function () use ($app) {
     try {
         $request = $app->request();
-        $refeicao_alimento = json_decode($request->getBody());
+        $refeicaoAlimento = json_decode($request->getBody());
         $service = new RefeicaoAlimentoService();
-        echo json_encode($service->save($refeicao_alimento));
+        echo json_encode($service->save($refeicaoAlimento));
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
     }
@@ -22,8 +22,8 @@ $app->post('/save', function () use ($app) {
 $app->get('/find/:id', function ($id) {
     try {
         $service = new RefeicaoAlimentoService();
-        $refeicao_alimento = $service->find($id);
-        echo json_encode($refeicao_alimento);
+        $refeicaoAlimento = $service->find($id);
+        echo json_encode($refeicaoAlimento);
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
     }
@@ -32,8 +32,8 @@ $app->get('/find/:id', function ($id) {
 $app->get('/findAll', function () {
     try {
         $service = new RefeicaoAlimentoService();
-        $refeicaos_alimentos = $service->findAll();
-        echo json_encode($refeicaos_alimentos, JSON_UNESCAPED_UNICODE);
+        $refeicaosAlimentos = $service->findAll();
+        echo json_encode($refeicaosAlimentos, JSON_UNESCAPED_UNICODE);
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
     }
@@ -51,9 +51,9 @@ $app->get('/delete/:id', function ($id) {
 $app->post('/update', function () use ($app) {
     try {
         $request = $app->request();
-        $refeicao_alimento = json_decode($request->getBody());
+        $refeicaoAlimento = json_decode($request->getBody());
         $service = new RefeicaoAlimentoService();
-        echo json_encode($service->update($refeicao_alimento));
+        echo json_encode($service->update($refeicaoAlimento));
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
     }

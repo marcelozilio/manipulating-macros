@@ -20,8 +20,8 @@
                     <tbody>
                         <tr ng-repeat="alimento in vm.alimentos | filter:pesquisa track by alimento.ID_ALIMENTO">
                             <td>{{alimento.DESCRICAO}}</td>
-                            <td><input type="number" class="form-control"></td>                        
-                            <td></td>
+                            <td style="width: 100px"><input type="number" ng-model="quantidade" class="form-control "></td>                        
+                            <td><button class="btn btn-success btn-sm" ng-click="vm.saveRefeicaoAlimento(alimento, quantidade)" role="button">Adicionar</button></td>
                         </tr>
                     </tbody>
                 </table>            

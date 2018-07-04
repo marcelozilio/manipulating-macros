@@ -21,12 +21,12 @@ class RefeicaoAlimentoRepository implements IRepository
     public function save($object)
     {
         try {
-            $stat=$this->connection->prepare("INSERT INTO REFEICAO_ALIMENTO(ID_REFEICAO_ALIMENTO,ID_REFEICAO,ID_ALIMENTO,DATA_REFEICAO)values(null,?,?,?)");
+            $stat=$this->connection->prepare("INSERT INTO REFEICAO_ALIMENTO(ID_REFEICAO_ALIMENTO,ID_REFEICAO,ID_ALIMENTO,QUANTIDADE,CALORIAS)values(null,?,?,?,?)");
             
             $stat->bindValue(1, $object->ID_REFEICAO);
-            $stat->bindValue(2, $object->ID_DIA);
-            $stat->bindValue(3, $object->ID_USUARIO);
-            $stat->bindValue(4, $object->DESCRICAO);
+            $stat->bindValue(2, $object->ID_ALIMENTO);
+            $stat->bindValue(3, $object->QUANTIDADE);
+            $stat->bindValue(4, $object->CALORIAS);
             $stat->execute();
             $this->connection = null;
             return true;
@@ -75,12 +75,7 @@ class RefeicaoAlimentoRepository implements IRepository
     public function update($object)
     {
         try {
-            $stat=$this->connection->prepare("UPDATE REFEICAO_ALIMENTO SET DESCRICAO=? WHERE ID_REFEICAO_ALIMENTO = ?");
-            
-            $stat->bindValue(1, $object->DESCRICAO);
-            $stat->bindValue(3, $object->ID_REFEICAO_ALIMENTO);
-            $stat->execute();
-            $this->connection = null;
+            //DONE Não tem alterações.
             return true;
         } catch (Exception $ex) {
             throw new Exception('Não foi possível alterar o registro.'.$ex);

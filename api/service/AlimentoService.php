@@ -69,4 +69,9 @@ class AlimentoService implements IService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function getCalories($alimento)
+    {
+        return ($alimento->CARBOIDRATO * 4) + ($alimento->PROTEINA * 4) + ($alimento->LIPIDEOS * 9);
+    }
 }

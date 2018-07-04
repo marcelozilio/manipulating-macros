@@ -49,19 +49,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Aveia - Cereais e Derivados</td>
-                                    <td>60g</td>
-                                    <td>107</td>                            
-                                </tr>
-                                <tr>
-                                    <td>Whey 80% - g Suplementos</td>
-                                    <td>30g</td>
-                                    <td>116</td>
-                                </tr>                    
+                                <tr ng-repeat="refeicao_alimento in vm.refeicao_alimentos">
+                                    <td>{{refeicao_alimento.ID_REFEICAO}}</td>
+                                    <td>{{refeicao_alimento.QUANTIDADE}}g</td>
+                                    <td>{{refeicao_alimento.CALORIAS}}</td>    
+                                </tr>                  
                             </tbody>
                         </table>       
-                        <button class="btn btn-link" ng-click="vm.loadAlimentos()" type="button" data-toggle="modal" data-target="#exampleModal">Adicionar alimento</button>
+                        <button class="btn btn-link" ng-click="vm.setRefeicao(refeicao)" type="button" data-toggle="modal" data-target="#exampleModal">Adicionar alimento</button>
                     </div>
                 </div>                                                                    
             </div>

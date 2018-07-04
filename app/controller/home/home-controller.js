@@ -9,9 +9,11 @@
     function HomeController($rootScope, UserService, DiaService) {
         var vm = this;
         vm.user = null;
-        vm.dia = {ID_DIA : 0};
+        vm.dia = {};
         vm.refeicoes = [];
+        vm.refeicao = {};
         vm.alimentos = undefined;
+        vm.refeicao_alimentos = [];
         
         initController();
         
@@ -29,6 +31,7 @@
                     loadRefeicoesOfDay();
                 } else {
                     var dia = {
+                        ID_DIA : 0,
                         ID_USUARIO : $rootScope.globals.currentUser.id_usuario,
                         DESCRICAO : '',
                         DATA_DIA : new Date(),
@@ -52,11 +55,25 @@
             });
         }
         
+        vm.setRefeicao = function (refeicao) {
+            vm.refeicao = refeicao;            
+        }
+        
         function loadAlimentos() {
             DiaService.FindAllAlimentos()
             .then(function (response){
                 vm.alimentos = response.data;
             });            
+        }
+        
+        vm.saveRefeicaoAlimento = function (alimento, quantidade) {        
+            var refeicao_alimento = {
+                ID_REFEICAO : vm.refeicao.ID_REFEICAO,
+                ID_ALIMENTO : alimento.ID_ALIMENTO,
+                QUANTIDADE : quantidade,
+                CALORIAS : (((alimento.CARBOIDRATO*4)+(alimento.PROTEINA*4)+(alimento.LIPIDEOS*9)) * quantidade) /100
+            };
+            DiaService.SaveRefeicaoAlimento(refeicao_alimento);
         }
         
         function loadCurrentUser() {

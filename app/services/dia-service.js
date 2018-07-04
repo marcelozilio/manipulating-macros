@@ -12,7 +12,8 @@
             SaveDia : SaveDia,
             FindRefeicoesByDia : FindRefeicoesByDia,
             SaveRefeicoes : SaveRefeicoes,
-            FindAllAlimentos : FindAllAlimentos
+            FindAllAlimentos : FindAllAlimentos,
+            SaveRefeicaoAlimento : SaveRefeicaoAlimento
         }
         
         return request;
@@ -38,5 +39,8 @@
             return ApplicationUtils.get('alimento/findAll');
         }
 
+        function SaveRefeicaoAlimento(refeicaoAlimento) {    
+            return ApplicationUtils.post('refeicao-alimento/save', JSON.stringify(refeicaoAlimento));
+        }
     }
 })();

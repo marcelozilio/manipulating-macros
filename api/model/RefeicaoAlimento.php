@@ -10,7 +10,8 @@ class RefeicaoAlimento
     private $id_refeicao_alimento;
     private $id_refeicao;
     private $id_alimento;
-    private $data_refeicao;
+    private $quantidade;
+    private $calorias;
     
     public function __construct()
     {
@@ -35,6 +36,7 @@ class RefeicaoAlimento
         return '{"id_refeicao_alimento":'.$this->id_refeicao_alimento.','.
             '"id_refeicao":'.$this->id_refeicao.','.
             '"id_alimento":'.$this->id_alimento.','.
-            '"data_refeicao":"'.$this->data_refeicao.'"}';    
+            '"quantidade":'.$this->quantidade.','.
+            '"calorias":"'.$this->calorias.'"}';    
         }
     }

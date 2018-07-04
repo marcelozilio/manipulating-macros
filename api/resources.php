@@ -61,6 +61,13 @@ $app->group('/refeicao', function () use ($app) {
 });
 
 /**
+ * Recursos para refeição alimento.
+ */
+$app->group('/refeicao-alimento', function () use ($app) {
+    include_once 'resources/RefeicaoAlimentoResource.php';
+});
+
+/**
  * Recursos para dia.
  */
 $app->group('/dia', function () use ($app) {
