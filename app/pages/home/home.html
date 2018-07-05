@@ -34,7 +34,7 @@
                 <div class="card" ng-repeat="refeicao in vm.refeicoes track by refeicao.ID_REFEICAO">
                     <div class="card-header bg-light" id="heading{{refeicao.ID_REFEICAO}}">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{refeicao.ID_REFEICAO}}" aria-expanded="true" aria-controls="collapse{{refeicao.ID_REFEICAO}}">
+                            <button ng-click="vm.loadRefeicaoAlimento(refeicao.ID_REFEICAO)" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{refeicao.ID_REFEICAO}}" aria-expanded="true" aria-controls="collapse{{refeicao.ID_REFEICAO}}">
                                 {{refeicao.DESCRICAO}}
                             </button>
                         </h5>
@@ -45,14 +45,16 @@
                                 <tr>
                                     <th scope="col">Alimento</th>
                                     <th scope="col">Quantidade</th>
-                                    <th scope="col">Calorias</th>                    
+                                    <th scope="col">Calorias</th>
+                                    <th scope="col">Ações</th>                  
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="refeicao_alimento in vm.refeicao_alimentos">
-                                    <td>{{refeicao_alimento.ID_REFEICAO}}</td>
+                                    <td>{{refeicao_alimento.DESCRICAO}}</td>
                                     <td>{{refeicao_alimento.QUANTIDADE}}g</td>
-                                    <td>{{refeicao_alimento.CALORIAS}}</td>    
+                                    <td>{{refeicao_alimento.CALORIAS}}</td>
+                                    <td><button class="btn btn-danger btn-sm" ng-click="vm.deleteRefeicaoAlimento(refeicao_alimento)" role="button">Remover</button></td>
                                 </tr>                  
                             </tbody>
                         </table>       

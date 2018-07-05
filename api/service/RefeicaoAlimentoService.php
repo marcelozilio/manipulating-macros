@@ -60,4 +60,13 @@ class RefeicaoAlimentoService implements IService
             throw new Exception($e->getMessage());
         }  
     }
+
+    public function findByRefeicao($id)
+    {
+        try {
+            return $this->repository->findByRefeicao($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

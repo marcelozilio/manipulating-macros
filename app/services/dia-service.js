@@ -13,7 +13,9 @@
             FindRefeicoesByDia : FindRefeicoesByDia,
             SaveRefeicoes : SaveRefeicoes,
             FindAllAlimentos : FindAllAlimentos,
-            SaveRefeicaoAlimento : SaveRefeicaoAlimento
+            SaveRefeicaoAlimento : SaveRefeicaoAlimento,
+            FindRefeicaoAlimento : FindRefeicaoAlimento,
+            DeleteRefeicaoAlimento : DeleteRefeicaoAlimento
         }
         
         return request;
@@ -41,6 +43,14 @@
 
         function SaveRefeicaoAlimento(refeicaoAlimento) {    
             return ApplicationUtils.post('refeicao-alimento/save', JSON.stringify(refeicaoAlimento));
+        }
+
+        function FindRefeicaoAlimento(idRefeicao) {    
+            return ApplicationUtils.get('refeicao-alimento/findByRefeicao/'+ idRefeicao);
+        }
+
+        function DeleteRefeicaoAlimento(id) {
+            return ApplicationUtils.get('refeicao-alimento/delete/' + id);
         }
     }
 })();

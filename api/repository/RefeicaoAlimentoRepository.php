@@ -81,4 +81,17 @@ class RefeicaoAlimentoRepository implements IRepository
             throw new Exception('Não foi possível alterar o registro.'.$ex);
         }
     }
+
+    public function findByRefeicao($id)
+    {
+        try {
+            $stat = $this->connection->query("SELECT * FROM REFEICAO_ALIMENTO ra JOIN ALIMENTO a ON ra.ID_ALIMENTO = a.ID_ALIMENTO WHERE ID_REFEICAO = $id");
+            $array = array();
+            $array = $stat->fetchAll(PDO::FETCH_OBJ);
+            $this->connection = null;
+            return $array;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
 }

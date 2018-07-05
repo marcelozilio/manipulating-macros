@@ -66,14 +66,33 @@
             });            
         }
         
-        vm.saveRefeicaoAlimento = function (alimento, quantidade) {        
+        vm.saveRefeicaoAlimento = function (alimento) {
             var refeicao_alimento = {
                 ID_REFEICAO : vm.refeicao.ID_REFEICAO,
                 ID_ALIMENTO : alimento.ID_ALIMENTO,
-                QUANTIDADE : quantidade,
-                CALORIAS : (((alimento.CARBOIDRATO*4)+(alimento.PROTEINA*4)+(alimento.LIPIDEOS*9)) * quantidade) /100
+                QUANTIDADE : alimento.quantidade,
+                CALORIAS : (((alimento.CARBOIDRATO*4)+(alimento.PROTEINA*4)+(alimento.LIPIDEOS*9)) * alimento.quantidade) /100
             };
-            DiaService.SaveRefeicaoAlimento(refeicao_alimento);
+            DiaService.SaveRefeicaoAlimento(refeicao_alimento)
+            .then(function (response){
+                alimento.quantidade = undefined;
+                document.getElementById('quantidade').value = '';
+                vm.loadRefeicaoAlimento(vm.refeicao.ID_REFEICAO);
+            });
+        }
+        
+        vm.loadRefeicaoAlimento = function (idRefeicao) {
+            DiaService.FindRefeicaoAlimento(idRefeicao)
+            .then(function (response) {
+                vm.refeicao_alimentos = response.data;
+            });
+        }
+        
+        vm.deleteRefeicaoAlimento = function(refeicao_alimento){
+            DiaService.DeleteRefeicaoAlimento(refeicao_alimento.ID_REFEICAO_ALIMENTO)
+            .then(function (response){
+                vm.loadRefeicaoAlimento(refeicao_alimento.ID_REFEICAO);
+            });
         }
         
         function loadCurrentUser() {

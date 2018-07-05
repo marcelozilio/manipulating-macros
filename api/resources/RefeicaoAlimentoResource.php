@@ -58,3 +58,13 @@ $app->post('/update', function () use ($app) {
         echo json_encode($e->getMessage());
     }
 });
+
+$app->get('/findByRefeicao/:id', function ($id) {
+    try {
+        $service = new RefeicaoAlimentoService();
+        $refeicaosAlimentos = $service->findByRefeicao($id);
+        echo json_encode($refeicaosAlimentos, JSON_UNESCAPED_UNICODE);
+    } catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+});
